@@ -6,19 +6,19 @@ cls
 :: BatchGotAdmin
 >nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
 if '%errorlevel%' NEQ '0' (
-    echo Requisitando privilégios de administrador...
-    goto UACPrompt
+	echo Requisitando privilégios de administrador...
+	goto UACPrompt
 ) else ( goto gotAdmin )
 :UACPrompt
-    echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
-    set params = %*:"="
-    echo UAC.ShellExecute "cmd.exe", "/c %~s0 %params%", "", "runas", 1 >> "%temp%\getadmin.vbs"
-    "%temp%\getadmin.vbs"
-    del "%temp%\getadmin.vbs"
-    exit /B
+	echo Set UAC = CreateObject^("Shell.Application"^) > "%temp%\getadmin.vbs"
+	copy %0 "%temp%\fgms.cmd" /y
+	echo UAC.ShellExecute "cmd.exe", "/K %temp%\fgms.cmd", "", "runas", 1 >> "%temp%\getadmin.vbs"
+	"%temp%\getadmin.vbs"
+	del "%temp%\getadmin.vbs"
+	exit /B
 :gotAdmin
-    pushd "%CD%"
-    CD /D "%~dp0"
+	pushd "%CD%"
+	CD /D "%~dp0"
 
 :inicio
 cls
@@ -35,7 +35,7 @@ goto menu
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #                                              Menu Scripts 1.2                                               #
+echo #                                              Menu Scripts 1.3                                               #
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
 echo #                                                                                                             #
@@ -44,19 +44,21 @@ echo #                                         2 - Limpar programas pré-instala
 echo #                                         3 - Instalar programas básicos                                      #
 echo #                                         4 - Instalar Offices                                                #
 echo #                                         5 - Otimizar                                                        #
-echo #                                         6 - Pesquisar App                                                   #
-echo #                                         7 - Sobre                                                           #
+echo #                                         6 - Pesquisar Apps                                                  #
+echo #                                         7 - Atualizar Apps                                                  #
+echo #                                         8 - Sobre                                                           #
 echo #                                         0 - Sair                                                            #
 echo #                                                                                                             #
 echo ===============================================================================================================
-set /p opcao=Opcao:
+set /p opcao=Opção:
 if "%opcao%"=="1" goto inicial
 if "%opcao%"=="2" goto limpar
 if "%opcao%"=="3" goto programas
 if "%opcao%"=="4" goto office
 if "%opcao%"=="5" goto otimizar
 if "%opcao%"=="6" goto pesquisar
-if "%opcao%"=="7" goto sobre
+if "%opcao%"=="7" goto atualizar
+if "%opcao%"=="8" goto sobre
 if "%opcao%"=="0" exit
 goto menu
 
@@ -174,9 +176,11 @@ dism.exe /online /cleanup-image /scanhealth
 dism.exe /online /cleanup-image /restorehealth
 dism.exe /online /cleanup-image /startcomponentcleanup
 sfc /scannow
+chcp 1252 > nul
 for /f "skip=1" %%d in ('wmic logicaldisk get caption') do (
     defrag %%d /h /u /v
 )
+chcp 65001 > nul
 chkdsk /F /R
 pause
 goto menu
@@ -198,6 +202,12 @@ if "%opcao%"=="0" goto menu
 :winget
 set /p app=Digite o ID do aplicativo:
 winget install %app%
+pause
+goto menu
+
+:atualizar
+cls
+winget upgrade --all --include-unknown
 pause
 goto menu
 
@@ -239,6 +249,7 @@ echo # sfc /scannow, dism, desfragmenta todos os discos conectados e executa o c
 echo #   Opção 6 Pesquisar App: Faz uma pesquisa com o termo digitado nos repositorios winget e pergunta qual      #
 echo # gostaria de instalar, copie a id do app selecionando com o mouse e apertando enter para copiar e cole a id  #
 echo # com Ctrl + V para instalar o app desejado.                                                                  #
+echo #   Opção 7 atualiza todos os apps compatíveis com winget                                                     #
 echo #                                                                                                             #
 echo ===============================================================================================================
 pause
@@ -251,6 +262,7 @@ echo #                                                                          
 echo # Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca e Ofernandofilo por auxiliar na      #
 echo # criação do script.                                                                                          #
 echo # Compatível com Windows 10 e 11 com a última atualização do instalador de aplicativos da Microsoft Store.    #
+echo # Caso queira contribuir com o projeto com uma doação, doe para a chave pix falgamerr@gmail.com               #
 echo #                                                                                                             #
 echo #                                               1 - Site oficial                                              #
 echo #                                               2 - Checar atualizações                                       #
