@@ -1,6 +1,5 @@
 @echo off
 title Menu Scripts
-Color 0D
 chcp 65001
 cls
 
