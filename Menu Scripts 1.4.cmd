@@ -25,7 +25,7 @@ cls
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #  Lembre de atualizar o aplicativo "instalador de aplicativo" na Microsoft Store antes de executar o script, #
-echo #  caso contrário não funciona                                                                                #
+echo #  caso contrário não funcionará                                                                              #
 echo #                                                                                                             #
 echo ===============================================================================================================
 pause
@@ -34,8 +34,8 @@ goto menu
 :menu
 cls
 echo ===============================================================================================================
-echo #                                                                                                             #
-echo #                                              Menu Scripts 1.4                                               #
+echo #                                              Menu Scripts 1.5                                               #
+echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
 echo #                                                                                                             #
@@ -74,12 +74,13 @@ goto menu
 :limpar
 cls
 :desinstalar
+winget uninstall 9NBLGGH4QGHW 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT Microsoft.OneDrive Microsoft.Todos_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements
+winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.MixedReality.Portal_8wekyb3d8bbwe Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.SkypeApp_kzf8qxf38zg5c Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.OneDrive 9WZDNCRDTBJJ 9NBLGGH42THS --accept-source-agreements
 winget uninstall 9NBLGGH4QGHW --accept-source-agreements
 winget uninstall 9WZDNCRDTBJJ
 winget uninstall 9NBLGGH4R32N
 winget uninstall 9WZDNCRD29V9
 winget uninstall 9WZDNCRFJ1P3
-winget uninstall 9WZDNCRFJBD8
 winget uninstall 9WZDNCRFHVFW
 winget uninstall 9NBLGGH42THS
 winget uninstall 9NG1H8B3ZC7M
@@ -234,10 +235,10 @@ goto menu
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #    Este app é utilizado para automatizar e facilitar a configuração, manutenção do Windows, instalação de   #
-echo # aplicativos utilizando o gerenciador de pacotes winget e mais outros comandos CMD (prompt de comandos).     #
-echo # Você pode utilizar ele usando os números do teclado e a tecla enter para navegar entre as opções e          #
-echo # utilizá-las, e Ctrl + C para interromper os comandos em execução.                                           #
+echo #    Este Script é utilizado para automatizar e facilitar a configuração, manutenção do Windows, instalação   #
+echo # de aplicativos utilizando o gerenciador de pacotes winget e mais outros comandos CMD (prompt de comandos).  #
+echo # Você pode utilizar ele usando os números do teclado e a tecla enter para navegar entre as opções e utilizá- #
+echo # las, e Ctrl + C para interromper os comandos em execução.                                                   #
 echo #                                                                                                             #
 echo #   Opção 1 configuração inicial completa: Configura o Windows desinstalando aplicativos pré-instalados       #
 echo # do sistema (bloatwares) instalando aplicativos básicos (Winrar, Java, Chrome, Firefox, Acrobat Reader,      #
@@ -254,14 +255,14 @@ echo #   Opção 7 atualiza todos os apps compatíveis com winget.              
 echo #                                                                                                             #
 echo ===============================================================================================================
 pause
-goto menu
+goto sobre
 
 :Creditos
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca e Ofernandofilo por auxiliar      #
-echo # na criação do script.                                                                                       #
+echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca e Ofernandofilo por auxiliar na   #
+echo # criação do script.                                                                                          #
 echo #    Compatível com Windows 10 e 11 com a última versão do instalador de aplicativos da Microsoft Store.      #
 echo #    Caso queira contribuir com o projeto com uma doação, doe para a chave pix: falgamerr@gmail.com           #
 echo #                                                                                                             #
@@ -277,6 +278,6 @@ if "%opcao%"=="1" start https://github.com/FalGamerr/Menu-Scripts
 if "%opcao%"=="2" start https://github.com/FalGamerr/Menu-Scripts/releases/
 if "%opcao%"=="3" start https://youtube.com/user/FalGamerr
 if "%opcao%"=="4" start https://instagram.com/fabricio.yan.mm/
-if "%opcao%"=="0" goto menu
+if "%opcao%"=="0" goto sobre
 pause
-goto menu
+goto sobre
