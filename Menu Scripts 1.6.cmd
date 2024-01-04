@@ -34,7 +34,7 @@ goto menu
 :menu
 cls
 echo ===============================================================================================================
-echo #                                              Menu Scripts 1.5                                               #
+echo #                                              Menu Scripts 1.6                                               #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -74,8 +74,8 @@ goto menu
 :limpar
 cls
 :desinstalar
-winget uninstall 9NBLGGH4QGHW 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT Microsoft.OneDrive Microsoft.Todos_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe --accept-source-agreements
-winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.MixedReality.Portal_8wekyb3d8bbwe Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.SkypeApp_kzf8qxf38zg5c Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.OneDrive 9WZDNCRDTBJJ 9NBLGGH42THS --accept-source-agreements
+winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt Microsoft.BingNews_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.Todos_8wekyb3d8bbwe Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe Microsoft.OneDrive 9WZDNCRDTBJJ --accept-source-agreements
+winget uninstall 9NBLGGH4QGHW 9WZDNCRDTBJJ 9NBLGGH4R32N 9WZDNCRD29V9 9NBLGGH42THS 9NG1H8B3ZC7M Microsoft.SkypeApp_kzf8qxf38zg5c Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe --accept-source-agreements
 winget uninstall 9NBLGGH4QGHW --accept-source-agreements
 winget uninstall 9WZDNCRDTBJJ
 winget uninstall 9NBLGGH4R32N
@@ -91,6 +91,7 @@ winget uninstall 9NH2GPH4JZS4
 winget uninstall 9NKSQGP7F2NH
 winget uninstall 9NWD3S85MTFB
 winget uninstall 9NBLGGH5L9XT
+winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt
 winget uninstall Disney.37853FC22B2CE_6rarf9sa4v8jt
 winget uninstall 22364Disney.ESPNBetaPWA_6rarf9sa4v8jt
 winget uninstall AmazonVideo.PrimeVideo_pwbj9vvecjh7j
@@ -102,17 +103,23 @@ winget uninstall SpotifyAB.SpotifyMusic_zpdnekdrzrea0
 winget uninstall Spotify.Spotify
 winget uninstall Facebook.Messenger
 winget uninstall WhatsApp.WhatsApp
+winget uninstall Microsoft.BingNews_8wekyb3d8bbwe
 winget uninstall Microsoft.OneDrive
 winget uninstall Microsoft.Teams
 winget uninstall Microsoft.SkypeApp_kzf8qxf38zg5c
 winget uninstall Microsoft.OneDriveSync_8wekyb3d8bbwe
 winget uninstall MicrosoftTeams_8wekyb3d8bbwe
 winget uninstall Microsoft.Todos_8wekyb3d8bbwe
+winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
 winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe
+winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe
+winget uninstall Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe
 winget uninstall Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe
 winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe
 winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe
 winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe
+winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
+winget uninstall Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe
 if "%1"=="X" exit/B
 pause
 goto menu
@@ -257,12 +264,12 @@ echo ===========================================================================
 pause
 goto sobre
 
-:Creditos
+:creditos
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca e Ofernandofilo por auxiliar na   #
-echo # criação do script.                                                                                          #
+echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca, Ofernandofilo e Maugusto por     #
+echo # auxiliar na criação do script.                                                                              #
 echo #    Compatível com Windows 10 e 11 com a última versão do instalador de aplicativos da Microsoft Store.      #
 echo #    Caso queira contribuir com o projeto com uma doação, doe para a chave pix: falgamerr@gmail.com           #
 echo #                                                                                                             #
