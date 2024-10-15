@@ -37,7 +37,7 @@ goto menu
 REM Menu principal do script com seleção de opção por número.
 cls
 echo ===============================================================================================================
-echo #                                              Menu Scripts 1.8                                               #
+echo #                                              Menu Scripts 1.9                                               #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -72,12 +72,13 @@ REM Essa opção serve para pcs recém formatados, configura energia em alto des
 cls
 powercfg -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
 :desinstalar
-REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 11 23H2 todas as edições
-winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt Microsoft.BingNews_8wekyb3d8bbwe Microsoft.GamingApp_8wekyb3d8bbwe Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.Todos_8wekyb3d8bbwe Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe Microsoft.OneDrive Microsoft.549981C3F5F10_8wekyb3d8bbwe 9WZDNCRDTBJJ 9WZDNCRDTBVB 9WZDNCRFJ3Q2 9WZDNCRFHVQM 9WZDNCRDTBVB --accept-source-agreements
+REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 11 24H2 todas as edições
+winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT 9MV0B5HZVK9Z 9NZBF4GT040C 9NBLGGH5R558 Microsoft.Teams Microsoft.OneDrive Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements
 REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 10 22H2 todas as edições
-winget uninstall 9NBLGGH4QGHW 9WZDNCRDTBJJ 9NBLGGH4R32N 9WZDNCRD29V9 9NBLGGH42THS 9NG1H8B3ZC7M Microsoft.SkypeApp_kzf8qxf38zg5c Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe --accept-source-agreements
+winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9WZDNCRFJ3P2 9WZDNCRDTBJJ 9NBLGGH4R32N 9NBLGGH42THS 9NG1H8B3ZC7M 9WZDNCRDTBVB 9NFFX4SZZ23L 9WZDNCRD29V9 9WZDNCRFJ364 9WZDNCRFHVQM Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe Microsoft.OneDrive --accept-source-agreements
 if "%1"=="X" exit /B
-winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
+winget uninstall 9NRX63209R7B
+winget uninstall 9PDJDJS743XF
 call :instalar Y
 winget upgrade --all --include-unknown
 pause
@@ -88,51 +89,41 @@ cls
 REM Os trechos seguintes desinstalam bloatwares individualmente desde a versão 1903 do Windows 10 até as mais recentes do windows 10 e 11, para que não hajam interrupções por erro no winget.
 call :desinstalar X
 winget uninstall 9NBLGGH4QGHW --accept-source-agreements
+winget uninstall 9WZDNCRFJ3Q2
+winget uninstall 9WZDNCRFJ3P2
 winget uninstall 9WZDNCRDTBJJ
 winget uninstall 9NBLGGH4R32N
 winget uninstall 9WZDNCRD29V9
-winget uninstall 9WZDNCRFJ1P3
 winget uninstall 9WZDNCRFHVFW
 winget uninstall 9NBLGGH42THS
 winget uninstall 9NG1H8B3ZC7M
 winget uninstall 9P1J8S7CCWWT
+winget uninstall 9PDJDJS743XF
+winget uninstall 9WZDNCRDTBVB
+winget uninstall 9NBLGGH5R558
+winget uninstall 9MV0B5HZVK9Z
+winget uninstall 9NFFX4SZZ23L
+winget uninstall 9NZBF4GT040C
+winget uninstall 9NRX63209R7B
+winget uninstall 9WZDNCRFHWD2
+winget uninstall XPFFZHVGQWWLHB
+winget uninstall 9WZDNCRD29V9
+winget uninstall 9WZDNCRFHVQM
 winget uninstall 9NCBCSZSJRSB
 winget uninstall 9WZDNCRF0083
 winget uninstall 9NH2GPH4JZS4
 winget uninstall 9NKSQGP7F2NH
 winget uninstall 9NWD3S85MTFB
 winget uninstall 9NBLGGH5L9XT
-winget uninstall 9WZDNCRDTBVB
-winget uninstall Clipchamp.Clipchamp_yxz26nhyzhsrt
-winget uninstall Disney.37853FC22B2CE_6rarf9sa4v8jt
-winget uninstall 22364Disney.ESPNBetaPWA_6rarf9sa4v8jt
-winget uninstall AmazonVideo.PrimeVideo_pwbj9vvecjh7j
-winget uninstall BytedancePte.Ltd.TikTok_6yccndn6064se
-winget uninstall 5319275A.WhatsAppDesktop_cv1g1gvanyjgm
-winget uninstall Facebook.InstagramBeta_8xx8rvfyw5nnt
-winget uninstall FACEBOOK.317180B0BB486_8xx8rvfyw5nnt
-winget uninstall SpotifyAB.SpotifyMusic_zpdnekdrzrea0
-winget uninstall Spotify.Spotify
-winget uninstall Facebook.Messenger
-winget uninstall WhatsApp.WhatsApp
-winget uninstall Microsoft.BingNews_8wekyb3d8bbwe
+winget uninstall 9WZDNCRFJ364
 winget uninstall Microsoft.OneDrive
 winget uninstall Microsoft.Teams
-winget uninstall Microsoft.SkypeApp_kzf8qxf38zg5c
-winget uninstall Microsoft.OneDriveSync_8wekyb3d8bbwe
-winget uninstall MicrosoftTeams_8wekyb3d8bbwe
-winget uninstall Microsoft.Todos_8wekyb3d8bbwe
-winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
-winget uninstall Microsoft.Office.OneNote_8wekyb3d8bbwe
-winget uninstall Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe
-winget uninstall Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe
+winget uninstall Disney.37853FC22B2CE_6rarf9sa4v8jt
+winget uninstall AmazonVideo.PrimeVideo_pwbj9vvecjh7j
+winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe
+winget uninstall Microsoft.GetHelp_8wekyb3d8bbwe
 winget uninstall Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe
-winget uninstall MicrosoftCorporationII.MicrosoftFamily_8wekyb3d8bbwe
 winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe
-winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe
-winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
-winget uninstall Microsoft.WindowsFeedbackHub_8wekyb3d8bbwe
-winget uninstall Microsoft.549981C3F5F10_8wekyb3d8bbwe
 pause
 goto menu
 
@@ -140,7 +131,7 @@ goto menu
 cls
 REM Próximo trecho instala o winrar, o java, chrome, firefox, acrobat reader e plugins de execução de vídeo e imagem
 :instalar
-winget install RARLab.WinRAR Oracle.JavaRuntimeEnvironment Google.Chrome Adobe.Acrobat.Reader.64-bit 9NZVDKPMR9RD 9NCTDW2W1BH8 9MVZQVXJBQ9V 9N95Q1ZZPMH4 9N4D0MSMP0PT 9N4D0MSMP0PT --accept-package-agreements
+winget install RARLab.WinRAR Oracle.JavaRuntimeEnvironment Google.Chrome Adobe.Acrobat.Reader.64-bit 9NZVDKPMR9RD 9NCTDW2W1BH8 9MVZQVXJBQ9V 9N95Q1ZZPMH4 9N4D0MSMP0PT 9N0DX20HK701 --accept-package-agreements
 if "%1"=="Y" exit /B
 pause
 goto menu
