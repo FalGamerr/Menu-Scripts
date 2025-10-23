@@ -36,7 +36,7 @@ goto menu
 REM Menu principal do script com seleção de opção por número.
 cls
 echo ===============================================================================================================
-echo #                                    Menu Scripts 1.9 SoftwareDATA Edition                                    #
+echo #                                    Menu Scripts 1.10 SoftwareDATA Edition                                   #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -73,12 +73,14 @@ powercfg -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
 net user Suporte compaq9740 /add
 net localgroup Administradores Suporte /add
 :desinstalar
-REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 11 24H2 todas as edições
-winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9NBLGGH4R32N 9WZDNCRD29V9 9WZDNCRFHVFW 9P1J8S7CCWWT 9MV0B5HZVK9Z 9NZBF4GT040C 9NBLGGH5R558 Microsoft.Teams Microsoft.OneDrive Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements
-REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 10 22H2 todas as edições
-winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9WZDNCRFJ3P2 9WZDNCRDTBJJ 9NBLGGH4R32N 9NBLGGH42THS 9NG1H8B3ZC7M 9WZDNCRDTBVB 9NFFX4SZZ23L 9WZDNCRD29V9 9WZDNCRFJ364 9WZDNCRFHVQM Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe Microsoft.OneDrive --accept-source-agreements
+REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 11 25H2 todas as edições
+winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9NBLGGH4R32N 9WZDNCRFHVFW 9P1J8S7CCWWT 9NZBF4GT040C 9NBLGGH5R558 Microsoft.GamingApp_8wekyb3d8bbwe Microsoft.Xbox.TCUI_8wekyb3d8bbwe Microsoft.Teams Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements
 if "%1"=="X" exit /B
+winget uninstall Microsoft.Edge.GameAssist_8wekyb3d8bbwe
 winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
+winget uninstall Microsoft.OneDrive
+winget uninstall 9PDJDJS743XF
+winget uninstall 9WZDNCRD29V9
 call :instalar Y
 winget upgrade --all --include-unknown
 pause
@@ -88,7 +90,8 @@ goto menu
 cls
 REM Os trechos seguintes desinstalam bloatwares individualmente desde a versão 1903 do Windows 10 até as mais recentes do windows 10 e 11, para que não hajam interrupções por erro no winget.
 call :desinstalar X
-winget uninstall 9NBLGGH4QGHW --accept-source-agreements
+winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9WZDNCRFJ3P2 9WZDNCRDTBJJ 9NBLGGH4R32N 9NBLGGH42THS 9NG1H8B3ZC7M 9WZDNCRDTBVB 9NFFX4SZZ23L 9WZDNCRD29V9 9WZDNCRFJ364 9WZDNCRFHVQM Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe Microsoft.OneDrive --accept-source-agreements
+winget uninstall 9NBLGGH4QGHW
 winget uninstall 9WZDNCRFJ3Q2
 winget uninstall 9WZDNCRFJ3P2
 winget uninstall 9WZDNCRDTBJJ
@@ -116,14 +119,17 @@ winget uninstall 9NKSQGP7F2NH
 winget uninstall 9NWD3S85MTFB
 winget uninstall 9NBLGGH5L9XT
 winget uninstall 9WZDNCRFJ364
-winget uninstall Microsoft.OneDrive
-winget uninstall Microsoft.Teams
 winget uninstall Disney.37853FC22B2CE_6rarf9sa4v8jt
 winget uninstall AmazonVideo.PrimeVideo_pwbj9vvecjh7j
+winget uninstall Microsoft.Edge.GameAssist_8wekyb3d8bbwe
+winget uninstall Microsoft.OneDrive
+winget uninstall Microsoft.Teams
 winget uninstall Microsoft.YourPhone_8wekyb3d8bbwe
 winget uninstall Microsoft.GetHelp_8wekyb3d8bbwe
 winget uninstall Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe
+winget uninstall Microsoft.GamingApp_8wekyb3d8bbwe
 winget uninstall Microsoft.XboxApp_8wekyb3d8bbwe
+winget uninstall Microsoft.Xbox.TCUI_8wekyb3d8bbwe
 pause
 goto menu
 
@@ -131,7 +137,7 @@ goto menu
 cls
 REM Próximo trecho instala o winrar, o java, chrome, firefox, acrobat reader e plugins de execução de vídeo e imagem
 :instalar
-winget install RARLab.WinRAR Oracle.JavaRuntimeEnvironment Google.Chrome Adobe.Acrobat.Reader.64-bit 9NZVDKPMR9RD 9NCTDW2W1BH8 9MVZQVXJBQ9V 9N95Q1ZZPMH4 9N4D0MSMP0PT 9N0DX20HK701 --accept-package-agreements
+winget install RARLab.WinRAR Oracle.JavaRuntimeEnvironment Google.Chrome 9NZVDKPMR9RD Adobe.Acrobat.Reader.64-bit 9NCTDW2W1BH8 9MVZQVXJBQ9V 9N95Q1ZZPMH4 9N4D0MSMP0PT 9N0DX20HK701 --accept-package-agreements
 if "%1"=="Y" exit /B
 pause
 goto menu
@@ -207,12 +213,18 @@ echo #                                          Selecione a opção desejada:   
 echo #                                                                                                             #
 echo #                                          1 - Pesquisar Apps                                                 #
 echo #                                          2 - Atualizar Apps instalados                                      #
+echo #                                          3 - DirectX                                                        #
+echo #                                          4 - MSI Afterburner                                                #
+echo #                                          5 - VC Redist                                                      #
 echo #                                          0 - Voltar                                                         #
 echo #                                                                                                             #
 echo ===============================================================================================================
 set /p opcao=Opcao:
 if "%opcao%"=="1" goto pesquisar
 if "%opcao%"=="2" goto atualizar
+if "%opcao%"=="3" goto dx
+if "%opcao%"=="4" goto afterburner
+if "%opcao%"=="5" goto vcred
 if "%opcao%"=="0" goto menu
 goto menu
 
@@ -229,13 +241,13 @@ echo 0 - Voltar
 set /p opcao="Opcao:"
 if "%opcao%"=="1" goto instalarapp
 if "%opcao%"=="2" goto pesquisar
-if "%opcao%"=="0" goto menu
+if "%opcao%"=="0" goto apps
 
 :instalarapp
 set /p app="Digite o ID do aplicativo:"
 winget install "%app%"
 pause
-goto menu
+goto apps
 
 :atualizar
 REM Atualiza os aplicativos do pc compatíveis com winget.
@@ -243,6 +255,27 @@ cls
 winget upgrade --all --include-unknown
 pause
 goto menu
+
+:dx
+REM Instala o DirectX End-User Runtime Web.
+cls
+winget install Microsoft.DirectX
+pause
+goto apps
+
+:afterburner
+REM Instala o MSI Afterburner e o complemento RivaTuner Statistics Server, além do plugin DirectX necessário para rodar.
+cls
+winget install Microsoft.DirectX Guru3D.Afterburner Guru3D.RTSS
+pause
+goto apps
+
+:vcred
+REM Instala o VCRedist All In One.
+cls
+winget install abbodi1406.vcredist
+pause
+goto apps
 
 :problemas
 REM Essa seção dá opções de solução para problemas comuns e conhecidos do windows.
@@ -296,29 +329,80 @@ echo ===========================================================================
 echo #                                                                                                             #
 echo #                                              Selecione a marca do dispositivo:                              #
 echo #                                                                                                             #
-echo #                                               1 - Lenovo                                                    #
-echo #                                               2 - Dell                                                      #
-echo #                                               3 - Acer (Beta)                                               #
-echo #                                               4 - HP                                                        #
-echo #                                               5 - Asus                                                      #
-echo #                                               6 - Asrock                                                    #
-echo #                                               0 - Voltar                                                    #
+echo #                                               1  - Intel                                                    #
+echo #                                               2  - AMD                                                      #
+echo #                                               3  - Nvidia                                                   #
+echo #                                               4  - Lenovo                                                   #
+echo #                                               5  - Samsung                                                  #
+echo #                                               6  - MSI                                                      #
+echo #                                               7  - Dell                                                     #
+echo #                                               8  - Acer (Beta)                                              #
+echo #                                               9  - HP                                                       #
+echo #                                               10 - Asus                                                     #
+echo #                                               11 - Asrock                                                   #
+echo #                                               0  - Voltar                                                   #
 echo #                                                                                                             #
 echo ===============================================================================================================
 set /p opcao=Opcao:
-if "%opcao%"=="1" goto lenovo
-if "%opcao%"=="2" goto dell
-if "%opcao%"=="3" goto acer
-if "%opcao%"=="4" goto hp
-if "%opcao%"=="5" goto asus
-if "%opcao%"=="6" goto asrock
+if "%opcao%"=="1" goto intel
+if "%opcao%"=="2" goto amd
+if "%opcao%"=="3" goto nvidia
+if "%opcao%"=="4" goto lenovo
+if "%opcao%"=="5" goto samsung
+if "%opcao%"=="6" goto msi
+if "%opcao%"=="7" goto dell
+if "%opcao%"=="8" goto acer
+if "%opcao%"=="9" goto hp
+if "%opcao%"=="10" goto asus
+if "%opcao%"=="11" goto asrock
 if "%opcao%"=="0" goto menu
+goto menu
+
+:intel
+cls
+winget install Intel.IntelDriverAndSupportAssistant
+echo Após a instalação haverá um ícone na barra de ícones ao lado da barra de rede, som, etc, com o nome 
+echo "Intel Driver & Support Assistant", clique com o botão direito e clique em verificar atualizações,
+echo o mesmo abrirá o navegador e analizará os drivers, basta clicar em instalar tudo.
+pause
+goto menu
+
+:amd
+cls
+start "web" "https://www.amd.com/pt/support/download/drivers.html"
+echo Ache na lista descrita o modelo do Processador (Se for APU) e/ou modelo do Chipset e/ou Placa de vídeo,
+echo clique em "Enviar" e ele irá para a pagina de destino, baixe o driver correspondente a versão do SO e instale.
+pause
+goto menu
+
+:nvidia
+cls
+start "web" "https://www.nvidia.com/pt-br/software/nvidia-app/"
+echo Clique em "Baixar agora", após o download Execute o Nvidia APP, siga as instruções para verificar,
+echo baixar e instalar os drivers da placa de vídeo.
+pause
 goto menu
 
 :lenovo
 cls
 winget install Lenovo.SystemUpdate
 echo Execute o aplicativo "System Update" e avance para a instalação de drivers do seu lenovo.
+pause
+goto menu
+
+:samsung
+cls
+winget install 9NQ3HDB99VBF
+echo Execute o aplicativo "Samsung Update" e confirme o controle de conta do usuário, alguns notebooks ele detecta
+echo automático, outros precisarão do numero de modelo para avançar com a instalação manual.
+pause
+goto menu
+
+:msi
+cls
+winget install 9NVMNJCR03XV
+echo Execute o aplicativo "MSI Center", Selecione a opção Support e vá em Live Update, clique em verificar e
+echo instale os drivers necessários.
 pause
 goto menu
 
@@ -340,7 +424,7 @@ goto menu
 
 :hp
 cls
-start "web" "https://support.hp.com/br-pt/drivers"
+start "web" "https://support.hp.com/br-pt/help/hp-support-assistant"
 echo Siga as instruções do site para selecionar seu dispositivo, selecione "Deixe a HP detectar seu produto" e 
 echo inicie o download, execute o app, instale, vá em meu dispositivo e na aba downloads utilize a seção drivers
 echo para buscar e instalar os mesmos.
@@ -349,10 +433,9 @@ goto menu
 
 :asus
 cls
-start "web" "https://www.asus.com/br/support/download-center/"
-echo Siga as instruções do site para localizar o modelo, selecione suporte, drivers e firmware, selecione a versão
-echo do sistema operacional, baixe os drivers desejados e execute manualmente um por um usando "Setup" dentro das
-echo pastas baixadas no site.
+winget install 9N7R5S6B0ZZH
+Execute o aplicativo "MyAsus", siga as instruções, ao chegar na pagina principal utilize a seção Atualizações
+echo para buscar e instalar os Drivers.
 pause
 goto menu
 
