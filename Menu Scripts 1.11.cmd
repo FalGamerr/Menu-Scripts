@@ -26,8 +26,7 @@ REM Mensagem de aviso.
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #  Lembre de atualizar o aplicativo "instalador de aplicativo" na Microsoft Store antes de executar o script, #
-echo #  caso contrário não funcionará                                                                              #
+echo #       Atualize o aplicativo "instalador de aplicativo" na Microsoft Store caso o script não funcione.       #
 echo #                                                                                                             #
 echo ===============================================================================================================
 pause
@@ -37,7 +36,7 @@ goto menu
 REM Menu principal do script com seleção de opção por número.
 cls
 echo ===============================================================================================================
-echo #                                              Menu Scripts 1.10                                              #
+echo #                                              Menu Scripts 1.11                                              #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -203,13 +202,14 @@ goto menu
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #                                          Selecione a opção desejada:                                        #
+echo #                                         Selecione a opção desejada:                                         #
 echo #                                                                                                             #
 echo #                                          1 - Pesquisar Apps                                                 #
 echo #                                          2 - Atualizar Apps instalados                                      #
 echo #                                          3 - DirectX                                                        #
 echo #                                          4 - MSI Afterburner                                                #
 echo #                                          5 - VC Redist                                                      #
+echo #                                          6 - MAS                                                            #
 echo #                                          0 - Voltar                                                         #
 echo #                                                                                                             #
 echo ===============================================================================================================
@@ -219,6 +219,7 @@ if "%opcao%"=="2" goto atualizar
 if "%opcao%"=="3" goto dx
 if "%opcao%"=="4" goto afterburner
 if "%opcao%"=="5" goto vcred
+if "%opcao%"=="6" goto mas
 if "%opcao%"=="0" goto menu
 goto menu
 
@@ -248,7 +249,7 @@ REM Atualiza os aplicativos do pc compatíveis com winget.
 cls
 winget upgrade --all --include-unknown
 pause
-goto menu
+goto apps
 
 :dx
 REM Instala o DirectX End-User Runtime Web.
@@ -267,7 +268,15 @@ goto apps
 :vcred
 REM Instala o VCRedist All In One.
 cls
-winget install abbodi1406.vcredist
+start "web" "https://gitlab.com/stdout12/vcredist/-/releases"
+echo Vá até downloads, baixe o "VisualCppRedist_AIO_x86_x64.exe" e execute.
+pause
+goto apps
+
+:mas
+cls
+start "ps" powershell.exe -command "irm https://get.activated.win | iex"
+echo Siga as instruções para utilizar o MAS.
 pause
 goto apps
 
@@ -276,18 +285,40 @@ REM Essa seção dá opções de solução para problemas comuns e conhecidos do
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #                                                   Selecione:                                                #
+echo #                                                  Selecione:                                                 #
 echo #                                                                                                             #
-echo #                                               1 - Limpar temps e prefetch (Reiniciar)                       #
-echo #                                               2 - Resetar Defender                                          #
-echo #                                               3 - Resetar IP                                                #
-echo #                                               0 - Voltar                                                    #
+echo #                                    1  - Limpar temps e prefetch (Reiniciar)                                 #
+echo #                                    2  - Reinstalar Defender                                                 #
+echo #                                    3  - Resetar Rede e Firewall para config de Fábrica (Reiniciar)          #
+echo #                                    4  - Resetar IP                                                          #
+echo #                                    5  - Entrar na BIOS (Reiniciar)                                          #
+echo #                                    6  - Dism                                                                #
+echo #                                    7  - SFC Scannow                                                         #
+echo #                                    8  - CheckDisk                                                           #
+echo #                                    9  - Limpeza de disco                                                    #
+echo #                                    10 - Desfragmentar                                                       #
+echo #                                    11 - Criar ponto de restauração                                          #
+echo #                                    12 - Verificar assinatura de drivers                                     #
+echo #                                    13 - Ferramenta de Remoção de Software Mal-Intencionado                  #
+echo #                                    14 - Visualizador de Eventos                                             #
+echo #                                    0  - Voltar                                                              #
 echo #                                                                                                             #
 echo ===============================================================================================================
 set /p opcao=Opcao:
 if "%opcao%"=="1" goto temp
 if "%opcao%"=="2" goto defender
-if "%opcao%"=="3" goto resetip
+if "%opcao%"=="3" goto resetrede
+if "%opcao%"=="4" goto resetip
+if "%opcao%"=="5" goto bios
+if "%opcao%"=="6" goto dism
+if "%opcao%"=="7" goto sfc
+if "%opcao%"=="8" goto chk
+if "%opcao%"=="9" goto limpadisco
+if "%opcao%"=="10" goto defrag
+if "%opcao%"=="11" goto restaura
+if "%opcao%"=="12" goto signature
+if "%opcao%"=="13" goto msrt
+if "%opcao%"=="14" goto eventos
 if "%opcao%"=="0" goto menu
 pause
 goto menu
@@ -304,15 +335,99 @@ goto problemas
 
 :defender
 cls
-start "ps" /wait powershell.exe -Command "Get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage"
+start "ps" powershell.exe -Command "Get-AppxPackage Microsoft.SecHealthUI -AllUsers | Reset-AppxPackage"
+echo Reinicie o computador após a conclusão do comando e reabra o defender para conferir se foi resetado.
+pause
+goto problemas
+
+:resetrede
+cls
+netsh winsock reset
+netsh int ip reset
+netsh advfirewall reset
+ipconfig /release
+ipconfig /renew
+ipconfig /flushdns
+echo Teste a rede para verificar se o problema foi solucionado.
 pause
 goto problemas
 
 :resetip
 cls
+netsh winsock reset
 ipconfig /release
 ipconfig /renew
 ipconfig /flushdns
+echo Teste a rede para verificar se o problema foi solucionado.
+pause
+goto problemas
+
+:bios
+cls
+echo Pressione qualquer tecla para reiniciar o computador e entrar na bios, caso falhe execute novamente o comando.
+pause
+shutdown /r /fw /t 000
+pause
+goto problemas
+
+:dism
+cls
+dism.exe /online /cleanup-image /restorehealth
+dism.exe /online /cleanup-image /startcomponentcleanup
+pause
+goto problemas
+
+:sfc
+cls
+sfc /scannow
+pause
+goto problemas
+
+:chk
+cls
+chkdsk /F /R
+pause
+goto problemas
+
+:limpadisco
+cls
+echo Siga as instruções para selecionar os componentes para limpar.
+cleanmgr
+pause
+goto problemas
+
+:defrag
+cls
+echo Siga as instruções para desfragmentar ou realizar TRIM.
+dfrgui
+pause
+goto problemas
+
+:restaura
+cls
+echo Siga as instruções para criar um ponto de restauração do sistema.
+SystemPropertiesProtection.exe
+pause
+goto problemas
+
+:signature
+cls
+echo Siga as instruções para verificar a assinatura dos drivers do Windows.
+sigverif
+pause
+goto problemas
+
+:msrt
+cls
+echo Siga as instruições para usar a ferramenta de remoção de software mal-intencionado.
+mrt
+pause
+goto problemas
+
+:eventos
+cls
+echo Siga as instruções para visualizar os eventos do Windows.
+eventvwr
 pause
 goto problemas
 
@@ -321,7 +436,7 @@ REM Essa seção dá opções de drivers para serem baixados e instalados no seu
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #                                              Selecione a marca do dispositivo:                              #
+echo #                                      Selecione a marca do dispositivo:                                      #
 echo #                                                                                                             #
 echo #                                               1  - Intel                                                    #
 echo #                                               2  - AMD                                                      #
@@ -380,15 +495,14 @@ goto menu
 :lenovo
 cls
 winget install Lenovo.SystemUpdate
-echo Execute o aplicativo "System Update" e avance para a instalação de drivers do seu lenovo.
+echo Execute o aplicativo "System Update" e avance para a instalação de drivers do dispositivo.
 pause
 goto menu
 
 :samsung
 cls
-winget install 9NQ3HDB99VBF
-echo Execute o aplicativo "Samsung Update" e confirme o controle de conta do usuário, alguns notebooks ele detecta
-echo automático, outros precisarão do numero de modelo para avançar com a instalação manual.
+winget install 9NBLGGH4XDV0
+echo Execute o aplicativo "Samsung Device Care" e siga as instruções para instalar os drivers do dispositivo..
 pause
 goto menu
 
@@ -427,9 +541,8 @@ goto menu
 
 :asus
 cls
-winget install 9N7R5S6B0ZZH
-Execute o aplicativo "MyAsus", siga as instruções, ao chegar na pagina principal utilize a seção Atualizações
-echo para buscar e instalar os Drivers.
+start "web" "https://driverhub.asus.com/en"
+echo Siga as instruções para baixar e instalar o Asus DriverHUB.
 pause
 goto menu
 
@@ -447,7 +560,7 @@ REM Essa seção serve apenas para créditos, texto explicativo e direcionamento
 cls
 echo ===============================================================================================================
 echo #                                                                                                             #
-echo #                                                   Selecione:                                                #
+echo #                                                  Selecione:                                                 #
 echo #                                                                                                             #
 echo #                                               1 - Manual                                                    #
 echo #                                               2 - Créditos e suporte                                        #
@@ -491,6 +604,8 @@ echo ===========================================================================
 echo #                                                                                                             #
 echo #    Este script foi desenvolvido Por Fal_Gamerr, obrigado a RyanK_, Samuca, Ofernandofilo e Maugusto por     #
 echo # auxiliar na criação do script.                                                                              #
+echo #    Nos aplicativos a opção 6 MAS é um projeto de terceiros com Licença GNU GPL V3.0 com o seguinte Site:    #
+echo # "https://github.com/massgravel/Microsoft-Activation-Scripts"                                                #
 echo #    Compatível com Windows 10 e 11 com a última versão do instalador de aplicativos da Microsoft Store.      #
 echo #    Caso queira contribuir com o projeto com uma doação, doe para a chave pix: falgamerr@gmail.com           #
 echo #                                                                                                             #
