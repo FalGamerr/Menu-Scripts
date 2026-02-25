@@ -36,7 +36,7 @@ goto menu
 REM Menu principal do script com seleção de opção por número.
 cls
 echo ===============================================================================================================
-echo #                                              Menu Scripts 1.11                                              #
+echo #                                              Menu Scripts 1.12                                              #
 echo ===============================================================================================================
 echo #                                                                                                             #
 echo #                                            Selecione uma opção:                                             #
@@ -69,7 +69,9 @@ goto menu
 :inicial
 REM Essa opção serve para pcs recém formatados, configura energia em alto desempenho, roda comandos condensados para desinstalar bloatwares e um trecho para instalar programas básicos e verifica a update dos aplicativos instalados.
 cls
+echo Selecionando modo de energia Alto Desempenho
 powercfg -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+echo Desinstalando bloatwares
 :desinstalar
 REM Esse próximo código desinstala apenas bloatwares embarcados no Windows 11 25H2 todas as edições
 winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9NBLGGH4R32N 9WZDNCRFHVFW 9P1J8S7CCWWT 9NZBF4GT040C 9NBLGGH5R558 Microsoft.Teams Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe --accept-source-agreements
@@ -78,7 +80,9 @@ winget uninstall Microsoft.OutlookForWindows_8wekyb3d8bbwe
 winget uninstall Microsoft.OneDrive
 winget uninstall 9PDJDJS743XF
 winget uninstall 9WZDNCRD29V9
+echo Instalando apps
 call :instalar Y
+echo Atualizando apps
 winget upgrade --all --include-unknown
 pause
 goto menu
@@ -86,6 +90,7 @@ goto menu
 :limpar
 cls
 REM Os trechos seguintes desinstalam bloatwares individualmente desde a versão 1903 do Windows 10 até as mais recentes do windows 10 e 11, para que não hajam interrupções por erro no winget.
+echo Desinstalando aplicativos bloatwares preinstalados com o Windows
 call :desinstalar X
 winget uninstall 9NBLGGH4QGHW 9WZDNCRFJ3Q2 9WZDNCRFJ3P2 9WZDNCRDTBJJ 9NBLGGH4R32N 9NBLGGH42THS 9NG1H8B3ZC7M 9WZDNCRDTBVB 9NFFX4SZZ23L 9WZDNCRD29V9 9WZDNCRFJ364 9WZDNCRFHVQM Microsoft.Office.OneNote_8wekyb3d8bbwe Microsoft.MicrosoftSolitaireCollection_8wekyb3d8bbwe Microsoft.YourPhone_8wekyb3d8bbwe Microsoft.XboxApp_8wekyb3d8bbwe Microsoft.GetHelp_8wekyb3d8bbwe Microsoft.OneDrive --accept-source-agreements
 winget uninstall 9NBLGGH4QGHW
@@ -129,6 +134,7 @@ goto menu
 :programas
 cls
 REM Próximo trecho instala o winrar, o java, chrome, firefox, acrobat reader e plugins de execução de vídeo e imagem
+echo Instalando apps
 :instalar
 winget install RARLab.WinRAR Oracle.JavaRuntimeEnvironment Google.Chrome 9NZVDKPMR9RD Adobe.Acrobat.Reader.64-bit 9NCTDW2W1BH8 9MVZQVXJBQ9V 9N95Q1ZZPMH4 9N4D0MSMP0PT 9N0DX20HK701 --accept-package-agreements
 if "%1"=="Y" exit /B
@@ -184,16 +190,22 @@ goto menu
 :otimizar
 REM Essa opção seleciona o modo de energia alto desempenho, verifica a atualização de aplicativos compatíveis com winget, executa todas as instancias do dism, executa a verificação de arquivos do sistema, desfragmenta e invoca o checkdisk
 cls
+echo Selecionando modo de energia Alto Desempenho
 powercfg -setactive 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c
+echo Atualizando apps instalados
 winget upgrade --all --include-unknown
+Echo Rodando DISM
 dism.exe /online /cleanup-image /restorehealth
 dism.exe /online /cleanup-image /startcomponentcleanup
+echo Rodando SFC Scannow
 sfc /scannow
+echo Rodando Defrag
 chcp 1252 > nul
 for /f "skip=1" %%d in ('wmic logicaldisk get caption') do (
     defrag %%d /h /u /v
 )
 chcp 65001 > nul
+echo Rodando Checkdisk
 chkdsk /F /R
 pause
 goto menu
@@ -210,6 +222,7 @@ echo #                                          3 - DirectX                     
 echo #                                          4 - MSI Afterburner                                                #
 echo #                                          5 - VC Redist                                                      #
 echo #                                          6 - MAS                                                            #
+echo #                                          7 - FastFetch                                                      #
 echo #                                          0 - Voltar                                                         #
 echo #                                                                                                             #
 echo ===============================================================================================================
@@ -220,6 +233,7 @@ if "%opcao%"=="3" goto dx
 if "%opcao%"=="4" goto afterburner
 if "%opcao%"=="5" goto vcred
 if "%opcao%"=="6" goto mas
+if "%opcao%"=="7" goto fastfetch
 if "%opcao%"=="0" goto menu
 goto menu
 
@@ -268,8 +282,7 @@ goto apps
 :vcred
 REM Instala o VCRedist All In One.
 cls
-start "web" "https://gitlab.com/stdout12/vcredist/-/releases"
-echo Vá até downloads, baixe o "VisualCppRedist_AIO_x86_x64.exe" e execute.
+winget install abbodi1406.vcredist
 pause
 goto apps
 
@@ -277,6 +290,12 @@ goto apps
 cls
 start "ps" powershell.exe -command "irm https://get.activated.win | iex"
 echo Siga as instruções para utilizar o MAS.
+pause
+goto apps
+
+:fastfetch
+cls
+winget install Fastfetch-cli.Fastfetch
 pause
 goto apps
 
